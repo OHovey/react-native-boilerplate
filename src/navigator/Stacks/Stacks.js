@@ -1,9 +1,11 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { colors } from 'theme'
-import Home from 'pages/Home'
+import ClockedIn from 'pages/ClockedIn';
 import Profile from 'pages/Profile'
+import Organization from 'pages/Organization';
 import Details from 'pages/Details'
+import Login from 'pages/Login';
 import HeaderLeft from './HeaderLeft'
 import HeaderTitle from './HeaderTitle'
 
@@ -14,9 +16,10 @@ import HeaderTitle from './HeaderTitle'
 const Stack = createStackNavigator()
 
 const navigationProps = {
-  headerTintColor: 'white',
-  headerStyle: { backgroundColor: colors.darkPurple },
-  headerTitleStyle: { fontSize: 18 },
+  headerShown: false
+  // headerTintColor: 'white',
+  // headerStyle: { backgroundColor: colors.darkPurple },
+  // headerTitleStyle: { fontSize: 18 },
 }
 
 // ------------------------------------
@@ -25,16 +28,16 @@ const navigationProps = {
 
 export const HomeNavigator = () => (
   <Stack.Navigator
-    initialRouteName="Home"
+    initialRouteName="ClockedIn"
     headerMode="screen"
     screenOptions={navigationProps}
   >
     <Stack.Screen
-      name="Home"
-      component={Home}
+      name="ClockedIn"
+      component={ClockedIn}
       options={({ navigation }) => ({
-        title: 'Home',
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        title: 'ClockedIn',
+        // headerLeft: () => <HeaderLeft navigation={navigation} />,
         headerTitle: () => <HeaderTitle />,
       })}
     />
@@ -42,7 +45,7 @@ export const HomeNavigator = () => (
       name="Details"
       component={Details}
       options={({ navigation }) => ({
-        title: 'Home',
+        title: 'Details',
         headerLeft: () => <HeaderLeft navigation={navigation} />,
         headerTitle: () => <HeaderTitle />,
       })}
@@ -52,17 +55,15 @@ export const HomeNavigator = () => (
 
 export const ProfileNavigator = () => (
   <Stack.Navigator
-    initialRouteName="Profile"
+    initialRouteName="Organization"
     headerMode="screen"
     screenOptions={navigationProps}
   >
     <Stack.Screen
-      name="Profile"
-      component={Profile}
+      name="Organization"
+      component={Organization}
       options={({ navigation }) => ({
-        title: 'Profile',
-        headerLeft: () => <HeaderLeft navigation={navigation} />,
-        headerTitle: () => <HeaderTitle />,
+        title: 'Organizations',
       })}
     />
     <Stack.Screen
@@ -71,6 +72,23 @@ export const ProfileNavigator = () => (
       options={{
         title: 'Details',
       }}
+    />
+  </Stack.Navigator>
+)
+
+export const LoginNavigator = () => (
+  <Stack.Navigator
+    initialRouteName="Login"
+    headerMode="screen"
+    screenOptions={navigationProps}
+  >
+    <Stack.Screen
+      name="Login"
+      component={Login}
+      options={({ navigation }) => ({
+        title: 'Login',
+        headerTitle: () => <HeaderTitle />
+      })}
     />
   </Stack.Navigator>
 )
